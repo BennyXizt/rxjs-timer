@@ -17,7 +17,7 @@ function App() {
 		if(isTimer) {
 			const doubleClick$ = fromEvent(btnWait.current, 'click')
 			doubleClick$.pipe(
-			  buffer(doubleClick$.pipe(debounceTime(299))),
+			  buffer(doubleClick$.pipe(debounceTime(300))),
 			  filter(e => e.length === 2)
 			).subscribe(() => setIsTimer(!isTimer))
 			
@@ -54,6 +54,9 @@ function App() {
 	
 	function timerReset() {
 		setTime({hour: 0, minute: 0, seconds: 0})
+		
+			if(!isTimer)
+			setIsTimer(!isTimer)
 	}
 	
 	return (
